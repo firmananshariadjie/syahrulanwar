@@ -17,7 +17,8 @@ class TravelSeeder extends Seeder
             "id" => 1,
             "travel_name" => "Travel Ajudan",
             "description" => "Travel dari Lombok",
-            "status" => "open",
+            "status" => "Open",
+            "status_payment" => "Belum Lunas",
             "created_at" => "2025-09-29T09:13:02.000000Z",
             "updated_at" => "2025-09-29T09:13:02.000000Z",
         ]);
@@ -26,7 +27,8 @@ class TravelSeeder extends Seeder
             "id" => 2,
             "travel_name" => "Travel Ababil",
             "description" => "Travel dari Bandung",
-            "status" => "open",
+            "status" => "Open",
+            "status_payment" => "Belum Lunas",
             "created_at" => "2025-09-29T13:07:49.000000Z",
             "updated_at" => "2025-09-29T13:07:49.000000Z",
         ]);

@@ -9,7 +9,7 @@ class Travel extends Model
 {
     protected $table = 'travel';
     use HasFactory;
-    protected $fillable = ['travel_name', 'description', 'status'];
+    protected $fillable = ['travel_name', 'description', 'status', 'status_payment'];
 
     public function groups()
     {

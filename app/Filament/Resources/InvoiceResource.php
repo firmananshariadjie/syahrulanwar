@@ -34,8 +34,10 @@ class InvoiceResource extends Resource
                     ->relationship(
                         name: 'travels',
                         titleAttribute: 'travel_name',
-                        modifyQueryUsing: fn (\Illuminate\Database\Eloquent\Builder $query) => 
-                        $query->where('status', 'close')
+                        modifyQueryUsing: fn (\Illuminate\Database\Eloquent\Builder $query) =>
+                        $query
+                            ->where('status', 'Close')
+                            ->where('status_payment', 'Belum Lunas')
                     )
                     ->preload()
                     ->reactive()

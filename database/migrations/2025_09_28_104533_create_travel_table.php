@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('travel_name');
             $table->string('description');
-            $table->enum('status',['open', 'close'])->default('open');            
+            $table->enum('status',['Open', 'Close'])->default('Open');
+            $table->enum('status_payment',['Lunas', 'Belum Lunas'])->default('Belum Lunas');                    
             $table->timestamps();
         });
     }

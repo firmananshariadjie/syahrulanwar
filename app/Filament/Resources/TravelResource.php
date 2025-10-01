@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\Select;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Actions\Action;
 
 
@@ -35,8 +36,14 @@ class TravelResource extends Resource
                  Forms\Components\TextInput::make('description'),
                  Forms\Components\Select::make('status')
                     ->options([
-                        'open' => 'open',
-                        'close' => 'close',                        
+                        'Open' => 'Open',
+                        'Close' => 'Close',                        
+                    ])
+                    ->native(false),
+                Forms\Components\Select::make('status_payment')
+                    ->options([
+                        'Lunas' => 'Lunas',
+                        'Belum Lunas' => 'Belum Lunas',                        
                     ])
                     ->native(false)
             ]);
@@ -54,6 +61,13 @@ class TravelResource extends Resource
                 TextColumn::make('status')
                 ->sortable()
                 ->searchable(),
+                Tables\Columns\BadgeColumn::make('status_payment')
+                ->colors([
+                    'danger' => 'Belum Lunas',
+                    'success' => 'Lunas',
+                ])
+                ->sortable()
+                ->searchable(),
                 TextColumn::make('group_count')
                     ->label('Total Groups')
                     ->getStateUsing(fn ($record) => $record->groups()->count()),
@@ -66,7 +80,7 @@ class TravelResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
-                    ->disabled(fn ($record) => $record->status !== 'open'), // hide kalau open
+                    ->disabled(fn ($record) => $record->status !== 'Open'), // hide kalau Open
                 Action::make('addGroup')
                     ->label('Add Group')
                     ->url(fn ($record) => TravelGroupResource::getUrl('create', [
@@ -74,7 +88,7 @@ class TravelResource extends Resource
                     ]))
                     ->icon('heroicon-o-plus')
                     ->color('success')
-                    ->disabled(fn ($record) => $record->status !== 'open'), // hide kalau close
+                    ->disabled(fn ($record) => $record->status !== 'Open'), // hide kalau Close
                 Action::make('viewGroups')
                     ->label('View Groups')
                     ->icon('heroicon-o-eye')
