@@ -41,7 +41,7 @@ class TravelGroupResource extends Resource
                     ->default(fn () => request()->get('travel_id'))
                     ->required(),
                 Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('quota')->required(),
+                Forms\Components\TextInput::make('quota')->required()->label('Pax'),
                 Forms\Components\DatePicker::make('start_date')
                     ->native(false),
                 Forms\Components\DatePicker::make('end_date')
@@ -59,7 +59,8 @@ class TravelGroupResource extends Resource
                 ->sortable()       // opsional, bisa diurutkan
                 ->searchable(), 
                 TextColumn::make('name'),
-                TextColumn::make('quota'),
+                TextColumn::make('quota')
+                ->label('Pax'),
                 TextColumn::make('start_date'),
                 TextColumn::make('end_date'),
                 IconColumn::make('travelBill')
@@ -76,7 +77,7 @@ class TravelGroupResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
-                ->disabled(fn ($record) => $record->travel->status === 'close'), // disable jika travel close
+                ->disabled(fn ($record) => $record->travel->status === 'Close'), // disable jika travel close
                 Action::make('addBill')
                 ->disabled(fn ($record) => $record->bill !== null)
                 ->label('Add Bill')
@@ -88,7 +89,7 @@ class TravelGroupResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

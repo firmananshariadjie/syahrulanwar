@@ -53,7 +53,10 @@ class TravelBillResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('travelgroup_id'),
+                Tables\Columns\TextColumn::make('travelgroup.name')
+                ->label('Travel Group Name')
+                ->sortable()       // opsional, bisa diurutkan
+                ->searchable(), 
                 Tables\Columns\TextColumn::make('fee_in_out'),
                 Tables\Columns\TextColumn::make('fee_snack'),
                 Tables\Columns\TextColumn::make('trip'),
@@ -64,11 +67,12 @@ class TravelBillResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                ->disabled(fn ($record) => $record->travelgroup->travel->status === 'Close'), // disable jika travel close,
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

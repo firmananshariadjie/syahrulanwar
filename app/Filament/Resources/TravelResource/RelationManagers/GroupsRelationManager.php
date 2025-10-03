@@ -20,7 +20,7 @@ class GroupsRelationManager extends RelationManager
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('quota')->required(),
+                Forms\Components\TextInput::make('quota')->required()->label('Pax'),
                 Forms\Components\DatePicker::make('start_date')
                     ->native(false),
                 Forms\Components\DatePicker::make('end_date')
@@ -34,7 +34,7 @@ class GroupsRelationManager extends RelationManager
             ->recordTitleAttribute('name')
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('quota'),
+                Tables\Columns\TextColumn::make('quota')->label('Pax'),
                 Tables\Columns\TextColumn::make('start_date'),
                 Tables\Columns\TextColumn::make('end_date'),
             ])
@@ -50,7 +50,7 @@ class GroupsRelationManager extends RelationManager
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

@@ -9,7 +9,7 @@
 </head>
 <body class="antialiased bg-gray-50 text-gray-800">
   <!-- HERO -->
-  <header class="bg-cover bg-center" style="background-image: url('https://source.unsplash.com/1600x900/?kaaba,masjid');">
+  <header class="bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/20472958/pexels-photo-20472958.jpeg?_gl=1*thsn1x*_ga*Mjc2NTIxOTYwLjE3NTkzODcyMjc.*_ga_8JE65Q40S6*czE3NTkzODcyMjYkbzEkZzEkdDE3NTkzODczMTIkajYwJGwwJGgw');">
     <div class="bg-black bg-opacity-40">
       <div class="max-w-5xl mx-auto px-6 py-28 text-center">
         <h1 class="text-4xl md:text-5xl font-semibold text-white">Land Arrangement Umrah & Haji yang Terpercaya</h1>
