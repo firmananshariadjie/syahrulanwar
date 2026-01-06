@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\App;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,10 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $publicPath = base_path('public');
-        App::bind('path.public', function () use ($publicPath) {
-            return $publicPath;
-        });
+       
     }
 
     /**
