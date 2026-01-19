@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <title>Invoice {{ $invoice->invoice_number }}</title>
     <style>
+        @page {
+            margin: 20pt 20pt 20pt 20pt;
+        }
         body { font-family: DejaVu Sans, sans-serif; font-size: 12px; }
         .header { text-align: center; margin-bottom: 20px; }
         .table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
@@ -21,9 +24,42 @@
             width: 150px; /* sesuaikan ukuran tanda tangan */
             height: auto;
         }
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 900px;
+            opacity: 0.06;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+            /* LOGO POJOK KIRI ATAS */
+        .logo-top-left {
+            position: fixed;
+            top: -20pt;
+            left: -40pt;
+            width: 150pt;
+            height: auto;
+            opacity: 0.9;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
+
+  <!-- Watermark -->
+    <img
+        src="{{ public_path('images/watermark-hd.png') }}"
+        class="logo-top-left"
+        alt="Logo"
+    >
+
+    <!-- WATERMARK TENGAH -->
+    <img
+        src="{{ public_path('images/watermark-hd.png') }}"
+        class="watermark"
+        alt="Watermark"
+    >
     <div class="header">
         <h2>Invoice {{ $invoice->invoice_number }}</h2>
         <p>Status: {{ ucfirst($invoice->status) }}</p>
@@ -79,6 +115,8 @@
             </td>
         </tr>
     </table>
+    <h3>No Rekening: A/n SYAHRULANWAR | Bank Mandiri | 1610011884355 </h3>
+    
 
 </body>
 </html>

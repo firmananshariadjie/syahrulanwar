@@ -13,6 +13,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\TravelGroup;
+use App\Models\Travel;
+use Filament\Tables\Filters\SelectFilter;
 
 class TravelBillResource extends Resource
 {
@@ -64,7 +66,18 @@ class TravelBillResource extends Resource
                                 ->money('sar'),
             ])
             ->filters([
-                //
+                SelectFilter::make('travel')
+                    ->label('Travel')
+                    ->options(
+                        \App\Models\Travel::pluck('travel_name', 'id')
+                    )
+                    ->query(function ($query, $data) {
+                        if ($data['value']) {
+                            $query->whereHas('travelGroup.travel', function ($q) use ($data) {
+                                $q->where('travel.id', $data['value']);
+                            });
+                        }
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make()

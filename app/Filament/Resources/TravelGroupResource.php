@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TravelGroupResource\Pages;
 use App\Filament\Resources\TravelGroupResource\RelationManagers;
 use App\Models\TravelGroup;
+use App\Models\Travel;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,6 +17,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Filters\SelectFilter;
 
 class TravelGroupResource extends Resource
 {
@@ -73,7 +75,13 @@ class TravelGroupResource extends Resource
                 ->falseColor('danger'),
             ])
             ->filters([
-                //
+                SelectFilter::make('travel_id')
+                    ->label('Travel')
+                    ->options(
+                        Travel::query()
+                            ->pluck('travel_name', 'id')
+                            ->toArray()
+                    ),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
